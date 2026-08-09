@@ -1,0 +1,2 @@
+{"id":"refund","input":{"ticket_id":"T-1","message":"Please refund duplicate charge"},"expected":{"ticket_id":"T-1","summary":"Ticket message: Please refund duplicate charge"}}
+{"id":"login","input":{"ticket_id":"T-2","message":"Cannot sign in"},"expected":{"ticket_id":"T-2","summary":"Ticket message: Cannot sign in"}}

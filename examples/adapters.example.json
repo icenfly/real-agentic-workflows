@@ -1,0 +1,23 @@
+{
+  "tools": {
+    "crm_lookup": {
+      "type": "mcp",
+      "version": "crm-server-2026-08-07",
+      "url": "https://mcp.example.com/v1",
+      "tool_name": "lookup_customer",
+      "allowed_hosts": ["mcp.example.com"],
+      "headers_env": {"Authorization": "CRM_MCP_AUTHORIZATION"},
+      "timeout": 30
+    }
+  },
+  "providers": {
+    "generation": {
+      "type": "openai-compatible",
+      "version": "gateway-1.4.0",
+      "base_url": "https://models.example.com/v1",
+      "api_key_env": "MODEL_API_KEY",
+      "allowed_hosts": ["models.example.com"],
+      "timeout": 60
+    }
+  }
+}

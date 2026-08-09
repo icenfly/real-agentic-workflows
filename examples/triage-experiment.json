@@ -1,0 +1,13 @@
+{
+  "name": "triage_wording",
+  "assignment_unit": "organization_id",
+  "primary_metric": "resolved_without_handoff",
+  "guardrails": [
+    {"metric": "agent.error", "direction": "max", "threshold": 0.05, "min_units": 30},
+    {"metric": "agent.latency_ms", "direction": "max", "threshold": 2000, "min_units": 30}
+  ],
+  "variations": [
+    {"key": "control", "source": "triage-control.json", "weight": 1},
+    {"key": "treatment", "source": "triage-treatment.json", "weight": 1}
+  ]
+}

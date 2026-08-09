@@ -1,0 +1,264 @@
+{
+  "$id": "https://raw.githubusercontent.com/icenfly/real-agentic-workflows/main/schema/workflow-0.1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "edges": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "max_iterations": {
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "source": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "when": {
+            "properties": {
+              "op": {
+                "enum": [
+                  "eq",
+                  "ne",
+                  "gt",
+                  "gte",
+                  "lt",
+                  "lte",
+                  "in",
+                  "contains",
+                  "exists",
+                  "truthy"
+                ]
+              },
+              "path": {
+                "type": "string"
+              },
+              "value": {}
+            },
+            "required": [
+              "path",
+              "op"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "source",
+          "target"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "entry": {
+      "type": "string"
+    },
+    "input_schema": {
+      "type": "object"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "name": {
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,127}$",
+      "type": "string"
+    },
+    "nodes": {
+      "items": {
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "tool"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "config": {
+                  "required": [
+                    "tool",
+                    "tool_version"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "llm"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "config": {
+                  "required": [
+                    "provider",
+                    "provider_version",
+                    "model",
+                    "model_version",
+                    "prompt"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "subworkflow"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "config": {
+                  "required": [
+                    "plan_digest",
+                    "input"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "enum": [
+                    "constant",
+                    "branch",
+                    "output"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "config": {
+                  "required": [
+                    "value"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "template"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "config": {
+                  "required": [
+                    "template"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "join"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "config": {
+                  "required": [
+                    "wait_for"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "properties": {
+          "config": {
+            "type": "object"
+          },
+          "id": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,127}$",
+            "type": "string"
+          },
+          "idempotent": {
+            "type": "boolean"
+          },
+          "retry": {
+            "maximum": 10,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "side_effect": {
+            "type": "boolean"
+          },
+          "timeout_ms": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "type": {
+            "enum": [
+              "constant",
+              "template",
+              "tool",
+              "llm",
+              "branch",
+              "join",
+              "output",
+              "passthrough",
+              "subworkflow"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "config"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "output_schema": {
+      "type": "object"
+    },
+    "spec_version": {
+      "const": "0.1"
+    },
+    "version": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "spec_version",
+    "name",
+    "version",
+    "entry",
+    "nodes",
+    "edges"
+  ],
+  "title": "REAL Agentic Workflow",
+  "type": "object"
+}

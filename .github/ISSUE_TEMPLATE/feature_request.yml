@@ -1,0 +1,40 @@
+name: Feature request
+description: Propose a scoped capability for REAL
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the blocked workflow or operational outcome, not only the proposed API.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Provide observable behavior and a reproducible verification path.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Existing standards or alternatives considered
+      description: Note relevant frameworks, protocols, or simpler workarounds.
+    validations:
+      required: true
+  - type: textarea
+    id: lineage
+    attributes:
+      label: Reproducibility and experiment impact
+      description: Explain effects on immutable plans, trace lineage, attribution, compatibility, or security.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope checks
+      options:
+        - label: This directly supports versioned agentic workflows or their operation.
+          required: true
+        - label: I searched existing issues and documentation.
+          required: true

@@ -1,0 +1,4 @@
+interface:
+  display_name: "REAL Agentic Workflow"
+  short_description: "Build and operate reproducible agentic workflows"
+  default_prompt: "Use $real to create, validate, test, deploy, or experiment with a REAL workflow."

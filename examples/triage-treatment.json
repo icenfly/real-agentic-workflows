@@ -1,0 +1,42 @@
+{
+  "spec_version": "0.1",
+  "name": "ticket_triage",
+  "version": "2.0.0",
+  "description": "Treatment adds a concise handling instruction",
+  "input_schema": {
+    "type": "object",
+    "required": ["ticket_id", "message"],
+    "properties": {
+      "ticket_id": {"type": "string"},
+      "message": {"type": "string"}
+    },
+    "additionalProperties": false
+  },
+  "output_schema": {
+    "type": "object",
+    "required": ["ticket_id", "summary"],
+    "properties": {
+      "ticket_id": {"type": "string"},
+      "summary": {"type": "string"}
+    }
+  },
+  "entry": "summarize",
+  "nodes": [
+    {
+      "id": "summarize",
+      "type": "template",
+      "config": {"template": "Review and route this ticket: ${$.input.message}"}
+    },
+    {
+      "id": "result",
+      "type": "output",
+      "config": {
+        "value": {
+          "ticket_id": "${$.input.ticket_id}",
+          "summary": "${$.nodes.summarize}"
+        }
+      }
+    }
+  ],
+  "edges": [{"source": "summarize", "target": "result"}]
+}

@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "real-agentic-workflows"
+version = "0.1.0"
+description = "Reproducible agentic workflows with observability and online experimentation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "icenfly" }]
+keywords = ["agents", "agentic", "workflow", "experimentation", "observability", "mcp"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/icenfly/real-agentic-workflows"
+Documentation = "https://github.com/icenfly/real-agentic-workflows#readme"
+Repository = "https://github.com/icenfly/real-agentic-workflows.git"
+Issues = "https://github.com/icenfly/real-agentic-workflows/issues"
+Changelog = "https://github.com/icenfly/real-agentic-workflows/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+yaml = ["PyYAML>=6.0"]
+otel = ["opentelemetry-api>=1.25"]
+dev = ["build>=1.2", "pytest>=8.0", "ruff>=0.9"]
+
+[project.scripts]
+real = "agent_infra.cli:main"
+agent = "agent_infra.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+# The Canvas frontend is intentionally shipped as a dependency-free embedded asset.
+"src/agent_infra/canvas.py" = ["E501"]
