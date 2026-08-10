@@ -7,11 +7,7 @@ REAL 面向重复性 B 端任务，把 Workflow 定义、不可变执行、完�
 ## 1. 安装
 
 ```bash
-git clone https://github.com/icenfly/real-agentic-workflows.git
-cd real-agentic-workflows
-python -m venv .venv
-source .venv/bin/activate
-pip install -e '.[yaml,otel]'
+pip install real-agentic-workflows
 ```
 
 - 发布包名：`real-agentic-workflows`
@@ -154,6 +150,10 @@ real serve --host 0.0.0.0 --port 8080 --api-key-env REAL_API_KEY
 ## 9. 开发与贡献
 
 ```bash
+git clone https://github.com/icenfly/real-agentic-workflows.git
+cd real-agentic-workflows
+python -m venv .venv
+source .venv/bin/activate
 python -m pip install -e '.[dev,yaml]'
 ruff check src tests
 ruff format --check src tests
