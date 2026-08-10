@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/assets/real-framework-hero.png" alt="REAL Framework — 面向 Agentic Logic 的可复现实验框架" width="100%">
+</p>
+
 # REAL Framework
 
 **R**eproducible **E**xperimentation for **A**gentic **L**ogic：面向 Agentic Logic 的可复现实验框架。
