@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/assets/real-framework-hero.png" alt="REAL Framework — Reproducible Experimentation for Agentic Logic" width="100%">
+</p>
+
 # REAL Framework
 
 **R**eproducible **E**xperimentation for **A**gentic **L**ogic.
