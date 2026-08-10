@@ -21,14 +21,10 @@ REAL is an open-source framework for building, observing, evaluating, and safely
 
 ## Install
 
-From source:
+From PyPI:
 
 ```bash
-git clone https://github.com/icenfly/real-agentic-workflows.git
-cd real-agentic-workflows
-python -m venv .venv
-source .venv/bin/activate
-pip install -e '.[yaml,otel]'
+pip install real-agentic-workflows
 ```
 
 The distribution name is `real-agentic-workflows`. The primary command is `real`; `agent` remains a compatibility alias. The Python import namespace is currently `agent_infra`.
@@ -158,6 +154,10 @@ Run `real COMMAND --help` for machine-friendly argument details.
 ## Development
 
 ```bash
+git clone https://github.com/icenfly/real-agentic-workflows.git
+cd real-agentic-workflows
+python -m venv .venv
+source .venv/bin/activate
 python -m pip install -e '.[dev,yaml]'
 ruff check src tests
 ruff format --check src tests
